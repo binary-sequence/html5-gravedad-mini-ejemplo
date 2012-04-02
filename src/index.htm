@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="estilos.css">
  </head>
- <body>
+ <body onkeydown="keyboard.listenKeydown(event);" onkeyup="keyboard.listenKeyup(event);" onload="iniciar();">
   <canvas id="gameScreen">Este software "Gravedad" funciona mediante el elemento canvas de html5.<br> Si estás viendo este menaje significa que tu navegador web no es compatible con canvas. Utiliza un navegador compatible.</canvas>
   <script src="keyboardListener.js"></script>
   <script src="requestAnimationFrame.js"></script>
