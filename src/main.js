@@ -18,7 +18,8 @@ along with 'Gravedad - mini-ejemplo'.  If not, see <http://www.gnu.org/licenses/
 */
 
 // Clase main.
-function Main() {
+function Main(keyboard) {
+ var keyboard = keyboard;
  var gameScreen = document.getElementById('gameScreen'); gameScreen.width = 320; gameScreen.height = 240;
  var screen = gameScreen.getContext('2d');
  var bufferCanvas = document.createElement('canvas'); bufferCanvas.width = gameScreen.width; bufferCanvas.height = gameScreen.height;
@@ -35,7 +36,7 @@ function Main() {
   pelota.actualizar();
   pelota.dibujar();
   screen.drawImage(bufferCanvas, 0, 0);
-  if (salir) window.cancelAnimationFrame(mainLoop);
+  if (keyboard.getPressed != null) window.cancelAnimationFrame(mainLoop);
  };
 }
 
