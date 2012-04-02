@@ -18,7 +18,7 @@ along with Gravedad - mini-ejemplo.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 // Clase pelota.
-function pelota(imagenes, screen) {
+function Pelota(imagenes, screen) {
  // Propiedades.
  this.x = 150; this.y = 50;
  this.dx = 2;
