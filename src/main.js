@@ -28,15 +28,15 @@ function Main(keyboard) {
  imgPelota[0] = new Image(); imgPelota[0].src = "img/pelota0.png";
  imgPelota[1] = new Image(); imgPelota[1].src = "img/pelota1.png";
  var fondo = new Image(); fondo.src = 'img/fondo.bmp';
- var mainLoop = null;
  var pelota = new Pelota(imgPelota, bufferContext);
+ this.mainLoop = null;
 
  this.actualizar = function() {
   bufferContext.drawImage(fondo, 0, 0);
   pelota.actualizar();
   pelota.dibujar();
   screen.drawImage(bufferCanvas, 0, 0);
-  if (keyboard.getPressed != null) window.cancelAnimationFrame(mainLoop);
+  if (keyboard.getPressed != null) window.cancelAnimationFrame(this.mainLoop);
  };
 }
 
