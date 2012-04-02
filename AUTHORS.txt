@@ -1,0 +1,9 @@
+Sergio Lindo - <sergiolindo.empresa@gmail.com>
+	Tarea: Programación, port desde C hacia JavaScript+Canvas(html5)
+
+Software original de:
+Hugo Ruscitti - <hugoruscitti@yahoo.com.ar>
+	Tarea: Programación
+
+Walter Velazquez - <wgv_tattoo@yahoo.com.ar>
+	Tarea: Gráficos
