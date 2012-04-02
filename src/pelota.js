@@ -49,11 +49,11 @@ function Pelota(imagenes, screen) {
  };
  this.dibujar = function () {
   if (this.cuadro == 1) {
-   screen.drawImage(this.imagenes[1], this.x, this.y);
+   this.screen.drawImage(this.imagenes[1], this.x, this.y);
    this.cuadro = 0;
   } else {
    this.cuadro = 1;
-   screen.drawImage(this.imagenes[0], this.x, this.y);
+   this.screen.drawImage(this.imagenes[0], this.x, this.y);
   }
  };
 }
