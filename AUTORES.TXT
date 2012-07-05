@@ -1,9 +1,16 @@
 Sergio Lindo - <sergiolindo.empresa@gmail.com>
-	Tarea: ProgramaciÛn, cambio de lenguaje desde C hacia JavaScript+Canvas(html5)
+
+  Tarea: Programaci√≥n, cambio de lenguaje desde C hacia
+         JavaScript+Canvas(html5).
+________________________________________________________________________________
 
 Basado en el software original de:
+
 Hugo Ruscitti - <hugoruscitti@yahoo.com.ar>
-	Tarea: ProgramaciÛn
+
+  Tarea: Programaci√≥n
+
 
 Walter Velazquez - <wgv_tattoo@yahoo.com.ar>
-	Tarea: Gr·ficos
+
+  Tarea: Gr√°ficos
