@@ -81,7 +81,7 @@ function Main(keyboard) {
 
 // PROPIEDADES.    --------//
 
-	// ¿?
+	// Referencia al hilo de ejecución del bucle principal.
 	this.mainLoop = null;
 
 // MÉTODOS.
@@ -101,6 +101,8 @@ function Main(keyboard) {
 		if (keyboard.keychar != null)
 			// Se para el bucle de animación.
 			window.cancelAnimationFrame(this.mainLoop);
- };
+
+		this.mainLoop = window.requestAnimationFrame(this.actualizar());
+	};
 }
 
