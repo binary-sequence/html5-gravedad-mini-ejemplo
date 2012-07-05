@@ -73,7 +73,7 @@ function Main(keyboard) {
 	imgPelota[1] = new Image(); imgPelota[1].src = "img/pelota1.png";
 
 	// Objeto Image para almacenar la imagen de fondo.
-	var fondo = new Image(); fondo.src = 'img/fondo.bmp';
+	var fondo = new Image(); fondo.src = 'img/fondo.jpg';
 
 	// Objeto de clase pelota (ver /scripts/pelota.js).
 	var pelota = new Pelota(imgPelota, bufferContext);
@@ -84,10 +84,13 @@ function Main(keyboard) {
 	// Referencia al hilo de ejecución del bucle principal.
 	this.mainLoop = null;
 
-// MÉTODOS.
+
+// MÉTODOS.    --------//
 
 	// Actualiza los datos necesarios en cada 'fps'.
-	this.actualizar = function() {
+	this.actualizar = function(mainLoop) {
+		this.mainLoop = mainLoop;
+
 		// Dibuja la imagen de fondo en el buffer.
 		bufferContext.drawImage(fondo, 0, 0);
 
@@ -99,10 +102,7 @@ function Main(keyboard) {
 
 		// Si se pulsa alguna tecla...
 		if (keyboard.keychar != null)
-			// Se para el bucle de animación.
-			window.cancelAnimationFrame(this.mainLoop);
-
-		this.mainLoop = window.requestAnimationFrame(this.actualizar());
+			window.cancelAnimationFrame(this.mainLoop);// Se para el bucle de animación.
 	};
 }
 
