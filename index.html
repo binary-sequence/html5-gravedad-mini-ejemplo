@@ -3,14 +3,30 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no" />
+
 		<link rel="stylesheet" href="styles/normalize.css">
 		<link rel="stylesheet" href="styles/normalizeForGames.css">
-	</head>
-	<body onkeydown="keyboard.listenKeydown(event);" onkeyup="keyboard.listenKeyup(event);" onload="iniciar();">
-		<canvas id="gameScreen">Este software "Gravedad" funciona mediante el elemento canvas de html5.<br> Si estás viendo este menaje significa que tu navegador web no es compatible con canvas. Utiliza un navegador compatible.</canvas>
+
 		<script src="scripts/keyboardListener.js"></script>
 		<script src="scripts/requestAnimationFrame.js"></script>
 		<script src="scripts/pelota.js"></script>
+	</head>
+
+	<body onkeydown="keyboard.listenKeydown(event);" onkeyup="keyboard.listenKeyup(event);" onload="iniciar();">
+		<canvas id="gameScreen">
+			ESPAÑOL<br />
+			Este software, <b>Gravedad-mini-ejemplo</b>, funciona mediante el elemento canvas de
+			html5.<br />
+			Si estás viendo este mensaje, significa que tu navegador web no es
+			compatible con canvas.<br />
+			Utiliza un navegador compatible.<br />
+			<br />
+			ENGLISH<br />
+			This software, <b>Gravedad-mini-ejemplo</b>, works under canvas
+			element of html5.<br />
+			If you see this notice, your browser does not support canvas.<br />
+			Use a compatible web browser.
+		</canvas>
 		<script src="scripts/main.js"></script>
 		<script src="scripts/iniciar.js"></script>
 	</body>

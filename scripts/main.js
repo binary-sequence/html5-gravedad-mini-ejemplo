@@ -38,7 +38,7 @@ function Main(keyboard) {
  this.actualizar = function() {
   bufferContext.drawImage(fondo, 0, 0);
   pelota.actualizar();
-  pelota.dibujar();
+//  pelota.dibujar();
   screen.drawImage(bufferCanvas, 0, 0);
   if (keyboard.keychar != null) window.cancelAnimationFrame(this.mainLoop);
  };
