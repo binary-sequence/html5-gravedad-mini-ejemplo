@@ -11,8 +11,12 @@ function KeyboardListener() {
 	this.listenKeydown = function (e) {
 		var keynum;
 
-		if (window.event) keynum = e.keyCode; // IE8 y anteriores.
-		else if (e.which) keynum = e.which; // IE9/Firefox/Chrome/Opera/Safari.
+		// IE8 y anteriores.
+		if (window.event)
+			keynum = e.keyCode;
+		// IE9/Firefox/Chrome/Opera/Safari.
+		else if (e.which)
+			keynum = e.which;
 
 		// Desde ASCII(keynum) a carácter(keychar).
 		this.keychar = String.fromCharCode(keynum);
