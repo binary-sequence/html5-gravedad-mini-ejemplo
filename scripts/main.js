@@ -40,7 +40,7 @@ function Main(keyboard) {
   pelota.actualizar();
   pelota.dibujar();
   screen.drawImage(bufferCanvas, 0, 0);
-  if (keyboard.getPressed() != null) window.cancelAnimationFrame(this.mainLoop);
+  if (keyboard.keychar != null) window.cancelAnimationFrame(this.mainLoop);
  };
 }
 
