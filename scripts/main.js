@@ -64,7 +64,7 @@
 	var fondo = new Image(); fondo.src = 'img/fondo.jpg';
 
 	// Objeto de clase pelota (ver /scripts/pelota.js).
-	var pelota = null;
+	pelota = new Pelota(imgPelota);
 
 	// Almacena el código representativo del caracter pulsado o null.
 	keycode = null;
@@ -84,7 +84,7 @@
 		bufferContext.drawImage(fondo, 0, 0);
 
 		// Ejecuta el método actualizar del objeto de clase pelota.
-		pelota.actualizar();
+		pelota.actualizar(bufferContext);
 
 		// Pasa el contenido del buffer al canvas.
 		screen.drawImage(bufferCanvas, 0, 0);
@@ -113,9 +113,6 @@
 
 		// Objeto que efectúa operaciones de dibujo 2d en el buffer.
 		bufferContext = bufferCanvas.getContext('2d');
-
-		// Objeto de clase pelota (ver /scripts/pelota.js).
-		pelota = new Pelota(imgPelota, bufferContext);
 
 		// Ejecuto el bucle principal.
 		actualizar();

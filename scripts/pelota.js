@@ -42,7 +42,7 @@
 */
 
 // CLASE pelota.
-function Pelota(imagenes, screen) {
+function Pelota(imagenes) {
 // PROPIEDADES.    --------//
 
 	// Posición de la pelota en el plano.
@@ -60,14 +60,11 @@ function Pelota(imagenes, screen) {
 	// Contiene un array de objetos Image.
 	this.imagenes = imagenes;
 
-	// Referencia a la pantalla donde dibujar la pelota.
-	this.screen = screen;
-
 
 // MÉTODOS.    --------//
 
 	// Actualiza los datos de la pelota y la redibuja.
-	this.actualizar = function () { // Ejecutado en cada 'fps';
+	this.actualizar = function (screen) { // Ejecutado en cada 'fps';
 		// La pelota se desplaza horizontalmente.
 		this.x += this.dx;
 
@@ -106,7 +103,7 @@ function Pelota(imagenes, screen) {
 			this.cuadro = 0;
 
 		// Dibuja la pelota en la pantalla.
-		this.screen.drawImage(this.imagenes[this.cuadro], this.x, this.y);
+		screen.drawImage(this.imagenes[this.cuadro], this.x, this.y);
 	};
 }
 
