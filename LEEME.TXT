@@ -1,4 +1,4 @@
-Nombre del ejemplo: Gravedad-mini-ejemplo
+Nombre del programa: Gravedad-mini-ejemplo
 Licencia: GPL 3 (vea el archivo LICENCIA.TXT o la 'Licencia' mas abajo).
 Fecha: Abril del 2012
 Autor: Sergio Lindo
