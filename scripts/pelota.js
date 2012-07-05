@@ -69,12 +69,12 @@ function Pelota(imagenes) {
 		this.x += this.dx;
 
 		// Aceleración vertical (gravedad).
-		this.vel_y += 0.1;
+		this.vel_y += 0.4;
 
 		// Si choca con el suelo...
 		if (this.y + this.vel_y >= 176) {
 			// Pierde fuerza por la colisión.
-			this.vel_y -= 0.1;
+			this.vel_y -= 0.8;
 
 			// El sentido de la velocidad vertical se inverte.
 			this.vel_y *= -1;
@@ -82,7 +82,7 @@ function Pelota(imagenes) {
 			// Se asegura de que no atraviesa el límite del suelo.
 			this.y = 176;
 		} else
-		  // Si no ha chocado con el suelo...
+		// Si no ha chocado con el suelo...
 			// La pelota se desplaza verticalmente.
 			this.y += this.vel_y;
 
