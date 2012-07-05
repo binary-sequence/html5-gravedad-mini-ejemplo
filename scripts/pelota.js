@@ -3,7 +3,7 @@
 
   Este archivo es parte de 'Gravedad-mini-ejemplo'.
 
-  Copyright 2012 Sergio Lindo
+  Copyright 2012 Sergio Lindo - <sergiolindo.empresa@gmail.com>
 
   'Gravedad-mini-ejemplo' es software libre: usted puede redistribuirlo y/o
   modificarlo bajo los términos de la Licencia Pública General GNU publicada
@@ -24,7 +24,7 @@
 
   This file is part of 'Gravedad-mini-ejemplo'.
 
-  Copyright 2012 Sergio Lindo
+  Copyright 2012 Sergio Lindo - <sergiolindo.empresa@gmail.com>
 
   'Gravedad-mini-ejemplo' is free software: you can redistribute it and/or
   modify it under the terms of the GNU General Public License as published by
