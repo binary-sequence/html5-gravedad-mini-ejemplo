@@ -1,33 +1,33 @@
 // CLASE KeyboardListener. Recoge pulsaciones del teclado.
 function KeyboardListener() {
- // PROPIEDADES.    --------//
+// PROPIEDADES.    --------//
 
- // Almacena la tecla pulsada o null si no hay tecla pulsada.
- this.keychar = null;
+	// Almacena la tecla pulsada o null si no hay tecla pulsada.
+	this.keychar = null;
 
- // MÉTODOS.    --------//
+// MÉTODOS.    --------//
 
- // Se ejecuta en el evento canvas:onkeydown.
- this.listenKeydown = function (e) {
-  var keynum;
+	// Se ejecuta en el evento canvas:onkeydown.
+	this.listenKeydown = function (e) {
+		var keynum;
 
-  if (window.event) keynum = e.keyCode; // IE8 y anteriores.
-  else if (e.which) keynum = e.which; // IE9/Firefox/Chrome/Opera/Safari.
+		if (window.event) keynum = e.keyCode; // IE8 y anteriores.
+		else if (e.which) keynum = e.which; // IE9/Firefox/Chrome/Opera/Safari.
 
-  // Desde ASCII(keynum) a carácter(keychar).
-  this.keychar = String.fromCharCode(keynum);
+		// Desde ASCII(keynum) a carácter(keychar).
+		this.keychar = String.fromCharCode(keynum);
 
-  // El evento continúa normalmente.
-  return true;
- };
+		// El evento continúa normalmente.
+		return true;
+	};
 
- // Se ejecuta en el evento canvas:onkeyup.
- this.listenKeyup = function (e) {
-  // null -> No hay tecla pulsada.
-  this.keychar = null;
+	// Se ejecuta en el evento canvas:onkeyup.
+	this.listenKeyup = function (e) {
+		// null -> No hay tecla pulsada.
+		this.keychar = null;
 
-  // El evento continúa normalmente.
-  return true;
- };
+		// El evento continúa normalmente.
+		return true;
+	};
 }
 
