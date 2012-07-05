@@ -66,11 +66,14 @@
 	// Objeto de clase pelota (ver /scripts/pelota.js).
 	var pelota = null;
 
+	// Almacena el código representativo del caracter pulsado o null.
+	keycode = null;
+
+	// Almacena el caracter pulsado o null si no hay tecla pulsada.
+	keychar = null;
+
 	// Referencia al hilo de ejecución del bucle principal.
 	mainLoop = null;
-
-	// Objeto de clase KeyboardListener (ver /scripts/keyboardListener.js).
-	keyboard = new KeyboardListener();
 
 
 // FUNCIONES.    --------//
@@ -86,11 +89,8 @@
 		// Pasa el contenido del buffer al canvas.
 		screen.drawImage(bufferCanvas, 0, 0);
 
-		// Si pulsa alguna tecla...
-		if (keyboard.keychar != null)
-			window.cancelAnimationFrame(mainLoop);// Se para el bucle principal.
-		else
-			mainLoop = window.requestAnimationFrame(actualizar);// Creo un hilo de ejecución para el siguiente frame.
+		// Creo un hilo de ejecución para el siguiente frame.
+		mainLoop = window.requestAnimationFrame(actualizar);
 	};
 
 
@@ -128,8 +128,33 @@
 	};
 
 	// Evento de tecla pulsada.
-	window.onkeydown = keyboard.listenKeydown;
+	window.onkeydown = function (e) {
+		// IE8 y anteriores.
+		if (window.event)
+			keycode = e.keyCode;
+		// IE9/Firefox/Chrome/Opera/Safari.
+		else if (e.which)
+			keycode = e.which;
+
+		// De código-numérico(keycode) a carácter(keychar).
+		keychar = String.fromCharCode(keycode);
+
+		// Si pulsa alguna tecla...
+		if (keychar != null)
+			// Se para el bucle principal.
+			window.cancelAnimationFrame(mainLoop);
+
+		// El evento continúa normalmente.
+		return true;
+	};
 
 	// Evento de tecla levantada.
-	window.onkeyup = keyboard.listenKeyup;
+	window.onkeyup = function (e) {
+		// null -> No hay tecla pulsada.
+		keycode = null;
+		keychar = null;
+
+		// El evento continúa normalmente.
+		return true;
+	};
 
