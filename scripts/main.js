@@ -41,31 +41,19 @@
 
 */
 
-// CLASE main.
-function Main(keyboard) {
-// VARIABLES PRIVADAS.    --------//
-
-	// Referencia al objeto de clase keyboardListener.
-	var keyboard = keyboard;
+// VARIABLES .    --------//
 
 	// Referencia al elemento gráfico canvas.
-	var gameScreen = document.getElementById('gameScreen');
-
-	// Resolución del elemento canvas.
-	gameScreen.width = 320; gameScreen.height = 240;
+	var gameScreen = null;
 
 	// Objeto que efectúa operaciones de dibujo 2d en canvas.
-	var screen = gameScreen.getContext('2d');
+	var screen = null;
 
 	// Buffer para técnica de double buffering.
 	var bufferCanvas = document.createElement('canvas');
 
-	// Resolución del buffer.
-	bufferCanvas.width = gameScreen.width;
-	bufferCanvas.height = gameScreen.height;
-
 	// Objeto que efectúa operaciones de dibujo 2d en el buffer.
-	var bufferContext = bufferCanvas.getContext('2d');
+	bufferContext = null;
 
 	// Array de objetos Image para almacenar los frames de la pelota.
 	var imgPelota = new Array();
@@ -76,21 +64,19 @@ function Main(keyboard) {
 	var fondo = new Image(); fondo.src = 'img/fondo.jpg';
 
 	// Objeto de clase pelota (ver /scripts/pelota.js).
-	var pelota = new Pelota(imgPelota, bufferContext);
-
-
-// PROPIEDADES.    --------//
+	var pelota = null;
 
 	// Referencia al hilo de ejecución del bucle principal.
-	this.mainLoop = null;
+	mainLoop = null;
+
+	// Objeto de clase KeyboardListener (ver /scripts/keyboardListener.js).
+	keyboard = new KeyboardListener();
 
 
-// MÉTODOS.    --------//
+// FUNCIONES.    --------//
 
 	// Actualiza los datos necesarios en cada 'fps'.
-	this.actualizar = function(mainLoop) {
-		this.mainLoop = mainLoop;
-
+	function actualizar() {
 		// Dibuja la imagen de fondo en el buffer.
 		bufferContext.drawImage(fondo, 0, 0);
 
@@ -100,9 +86,50 @@ function Main(keyboard) {
 		// Pasa el contenido del buffer al canvas.
 		screen.drawImage(bufferCanvas, 0, 0);
 
-		// Si se pulsa alguna tecla...
+		// Si pulsa alguna tecla...
 		if (keyboard.keychar != null)
-			window.cancelAnimationFrame(this.mainLoop);// Se para el bucle de animación.
+			window.cancelAnimationFrame(mainLoop);// Se para el bucle principal.
+		else
+			mainLoop = window.requestAnimationFrame(actualizar);// Creo un hilo de ejecución para el siguiente frame.
 	};
-}
+
+
+// EVENTOS.    --------//
+
+	// Evento de página cargada.
+	window.onload = function() {
+		// Referencia al elemento gráfico canvas.
+		gameScreen = document.getElementById('gameScreen');
+
+		// Resolución del elemento canvas.
+		gameScreen.width = 320; gameScreen.height = 240;
+
+		// Objeto que efectúa operaciones de dibujo 2d en canvas.
+		screen = gameScreen.getContext('2d');
+
+		// Resolución del buffer.
+		bufferCanvas.width = gameScreen.width;
+		bufferCanvas.height = gameScreen.height;
+
+		// Objeto que efectúa operaciones de dibujo 2d en el buffer.
+		bufferContext = bufferCanvas.getContext('2d');
+
+		// Objeto de clase pelota (ver /scripts/pelota.js).
+		pelota = new Pelota(imgPelota, bufferContext);
+
+		// Ejecuto el bucle principal.
+		actualizar();
+	};
+
+	// Evento de menú contextual.
+	window.oncontextmenu = function() {
+		// Desactivar menú contextual.
+		return false;
+	};
+
+	// Evento de tecla pulsada.
+	window.onkeydown = keyboard.listenKeydown;
+
+	// Evento de tecla levantada.
+	window.onkeyup = keyboard.listenKeyup;
 
