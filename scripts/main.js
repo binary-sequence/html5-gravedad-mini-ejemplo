@@ -41,30 +41,66 @@
 
 */
 
-// Clase main.
+// CLASE main.
 function Main(keyboard) {
- // Variables privadas.
- var keyboard = keyboard;
- var gameScreen = document.getElementById('gameScreen'); gameScreen.width = 320; gameScreen.height = 240;
- var screen = gameScreen.getContext('2d');
- var bufferCanvas = document.createElement('canvas'); bufferCanvas.width = gameScreen.width; bufferCanvas.height = gameScreen.height;
- var bufferContext = bufferCanvas.getContext('2d');
- var imgPelota = new Array();
- imgPelota[0] = new Image(); imgPelota[0].src = "img/pelota0.png";
- imgPelota[1] = new Image(); imgPelota[1].src = "img/pelota1.png";
- var fondo = new Image(); fondo.src = 'img/fondo.bmp';
- var pelota = new Pelota(imgPelota, bufferContext);
+// VARIABLES PRIVADAS.    --------//
 
- // Propiedades.
- this.mainLoop = null;
+	// Referencia al objeto de clase keyboardListener.
+	var keyboard = keyboard;
 
- // Métodos.
- this.actualizar = function() {
-  bufferContext.drawImage(fondo, 0, 0);
-  pelota.actualizar();
-//  pelota.dibujar();
-  screen.drawImage(bufferCanvas, 0, 0);
-  if (keyboard.keychar != null) window.cancelAnimationFrame(this.mainLoop);
+	// Referencia al elemento gráfico canvas.
+	var gameScreen = document.getElementById('gameScreen');
+
+	// Resolución del elemento canvas.
+	gameScreen.width = 320; gameScreen.height = 240;
+
+	// Objeto que efectúa operaciones de dibujo 2d en canvas.
+	var screen = gameScreen.getContext('2d');
+
+	// Buffer para técnica de double buffering.
+	var bufferCanvas = document.createElement('canvas');
+
+	// Resolución del buffer.
+	bufferCanvas.width = gameScreen.width;
+	bufferCanvas.height = gameScreen.height;
+
+	// Objeto que efectúa operaciones de dibujo 2d en el buffer.
+	var bufferContext = bufferCanvas.getContext('2d');
+
+	// Array de objetos Image para almacenar los frames de la pelota.
+	var imgPelota = new Array();
+	imgPelota[0] = new Image(); imgPelota[0].src = "img/pelota0.png";
+	imgPelota[1] = new Image(); imgPelota[1].src = "img/pelota1.png";
+
+	// Objeto Image para almacenar la imagen de fondo.
+	var fondo = new Image(); fondo.src = 'img/fondo.bmp';
+
+	// Objeto de clase pelota (ver /scripts/pelota.js).
+	var pelota = new Pelota(imgPelota, bufferContext);
+
+
+// PROPIEDADES.    --------//
+
+	// ¿?
+	this.mainLoop = null;
+
+// MÉTODOS.
+
+	// Actualiza los datos necesarios en cada 'fps'.
+	this.actualizar = function() {
+		// Dibuja la imagen de fondo en el buffer.
+		bufferContext.drawImage(fondo, 0, 0);
+
+		// Ejecuta el método actualizar del objeto de clase pelota.
+		pelota.actualizar();
+
+		// Pasa el contenido del buffer al canvas.
+		screen.drawImage(bufferCanvas, 0, 0);
+
+		// Si se pulsa alguna tecla...
+		if (keyboard.keychar != null)
+			// Se para el bucle de animación.
+			window.cancelAnimationFrame(this.mainLoop);
  };
 }
 
