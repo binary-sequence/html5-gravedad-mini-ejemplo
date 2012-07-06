@@ -41,7 +41,7 @@
 
 */
 
-// VARIABLES .    --------//
+// VARIABLES.    --------//
 
 	// Referencia al elemento gráfico canvas.
 	var gameScreen = null;
@@ -93,6 +93,30 @@
 		mainLoop = window.requestAnimationFrame(actualizar);
 	};
 
+	// Ajusta el tamaño del canvas a cualquier resolución de pantalla.
+	function resizeGame() {
+		var widthToHeight = 4 / 3;
+		var newWidth = window.innerWidth;
+		var newHeight = window.innerHeight;
+		var newWidthToHeight = newWidth / newHeight;
+
+		if (newWidthToHeight > widthToHeight) {
+			newWidth = newHeight * widthToHeight;
+			gameScreen.style.height = newHeight + 'px';
+			gameScreen.style.width = newWidth + 'px';
+		} else {
+			newHeight = newWidth / widthToHeight;
+			gameScreen.style.width = newWidth + 'px';
+			gameScreen.style.height = newHeight + 'px';
+		}
+
+		gameScreen.style.marginTop = (-newHeight / 2) + 'px';
+		gameScreen.style.marginLeft = (-newWidth / 2) + 'px';
+
+		gameScreen.width = newWidth;
+		gameScreen.height = newHeight;
+	}
+
 
 // EVENTOS.    --------//
 
@@ -114,9 +138,18 @@
 		// Objeto que efectúa operaciones de dibujo 2d en el buffer.
 		bufferContext = bufferCanvas.getContext('2d');
 
-		// Ejecuto el bucle principal.
+		// Ajuste del canvas a la resolución de pantalla.
+		resizeGame();
+
+		// Ejecuta el bucle principal.
 		actualizar();
 	};
+
+	// Evento de cambio del tamaño de la ventana.
+	window.addEventListener('resize', resizeGame, false);
+
+	// Evento de cambio de orientación de la ventana (Dispositivos móviles).
+	window.addEventListener('orientationchange', resizeGame, false);
 
 	// Evento de menú contextual.
 	window.oncontextmenu = function() {
