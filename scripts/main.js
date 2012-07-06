@@ -96,7 +96,7 @@
 	// Ajusta el tamaño del canvas a cualquier resolución de pantalla.
 	function ajustarGameScreen() {
 		// Proporción de ancho / alto deseada.
-		var widthToHeight = 4 / 3;
+		var widthToHeight = 320 / 240; // 320px*240px
 
 		// Ancho y alto actuales de la ventana.
 		var newWidth = window.innerWidth;
@@ -122,10 +122,6 @@
 		// Según las medidas actuales, se centra el canvas.
 		gameScreen.style.marginTop = (-newHeight / 2) + 'px';
 		gameScreen.style.marginLeft = (-newWidth / 2) + 'px';
-
-		// Según las medidas actuales, se ajusta la resolución del canvas.
-		gameScreen.width = newWidth;
-		gameScreen.height = newHeight;
 	}
 
 
