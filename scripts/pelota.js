@@ -42,7 +42,7 @@
 */
 
 // CLASE pelota.
-function Pelota(imagenes) {
+function Pelota() {
 // PROPIEDADES.    --------//
 
 	// Posición de la pelota en el plano.
@@ -53,15 +53,6 @@ function Pelota(imagenes) {
 
 	// Velocidad de desplazamiento vertical.
 	this.vel_y = 0;
-
-	// Frame de la pelota que se muetra.
-	this.cuadro = 0;
-
-	// Número de frame en cada segundo.
-	this.frame = 0;
-
-	// Contiene un array de objetos Image.
-	this.imagenes = imagenes;
 
 
 // MÉTODOS.    --------//
@@ -109,20 +100,6 @@ function Pelota(imagenes) {
 
 		// La pelota se desplaza horizontalmente.
 		this.x += this.vel_x;
-
-		// Cuento el frame en el segundo actual (60 fps).
-		this.frame++;
-		if (this.frame > 1)
-			this.frame = 0;
-
-		// Si se está moviendo horizontalmente...
-		if (this.vel_x != 0) {
-			// Cambia el frame a mostrar según el contador.
-			if (this.frame == 0)
-				this.cuadro = 1;
-			else
-				this.cuadro = 0;
-		}
 	};
 }
 

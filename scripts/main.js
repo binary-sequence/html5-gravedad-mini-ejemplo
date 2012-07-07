@@ -55,19 +55,25 @@
 	// Objeto que efectúa operaciones de dibujo 2d en el buffer.
 	var bufferContext = null;
 
-	// Array de objetos Image para almacenar los frames de la pelota.
-	var imgPelota = new Array();
-	imgPelota[0] = new Image(); imgPelota[0].src = "img/pelota0.png";
-	imgPelota[1] = new Image(); imgPelota[1].src = "img/pelota1.png";
+	// Array que almacena todas las imagenes.
+	var img = new Object();
 
 	// Objeto Image para almacenar la imagen de fondo.
-	var fondo = new Image(); fondo.src = 'img/fondo.jpg';
+	img['fondo'] = new Image();
+	img['fondo'].src = 'img/fondo.jpg';
+
+	// Array de objetos Image para almacenar los frames de la pelota.
+	img['pelota'] = new Array();
+	img['pelota'][0] = new Image();
+	img['pelota'][0].src = "img/pelota0.png";
+	img['pelota'][1] = new Image();
+	img['pelota'][1].src = "img/pelota1.png";
 
 	// Objeto de clase pelota (ver /scripts/pelota.js).
-	var pelota = new Pelota(imgPelota);
+	var pelota = new Pelota();
 
 	// Objeto de clase camara (ver /scripts/camara.js).
-	var camara = new Camara(pelota);
+	var camara = new Camara(img, pelota);
 
 	// Referencia al hilo de ejecución del bucle principal.
 	var mainLoop = null;
