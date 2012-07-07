@@ -118,6 +118,14 @@ function Camara(imagenes, pelota) {
 		);
 
 
+	// BORDE PANTALLA.
+		this.bufferContext.beginPath();
+        this.bufferContext.rect(0.5, 0.5, this.ancho - 1.5, this.alto - 1.5);
+		this.bufferContext.lineWidth = 1;
+		this.bufferContext.strokeStyle = "white";
+		this.bufferContext.stroke();
+
+
 	// VOLCADO DEL BUFFER AL CANVAS VISIBLE.    --------//
 
 		// Pasa el contenido del buffer al canvas.
