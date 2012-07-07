@@ -49,7 +49,7 @@ function Pelota(imagenes) {
 	this.x = 150; this.y = 50;
 
 	// Velocidad de desplazamiento horizontal.
-	this.dx = 2;
+	this.vel_x = 2;
 
 	// Velocidad de desplazamiento vertical.
 	this.vel_y = 0;
@@ -65,9 +65,6 @@ function Pelota(imagenes) {
 
 	// Actualiza los datos de la pelota y la redibuja.
 	this.actualizar = function (screen) { // Ejecutado en cada 'fps';
-		// La pelota se desplaza horizontalmente.
-		this.x += this.dx;
-
 		// Aceleración vertical (gravedad).
 		this.vel_y += 0.4;
 
@@ -86,15 +83,23 @@ function Pelota(imagenes) {
 			// La pelota se desplaza verticalmente.
 			this.y += this.vel_y;
 
+		// Si se mueve horizontalmente...
+		if (this.vel_x > 0)
+			// Aceleración horizontal (rozamiento).
+			this.vel_x -= 0.01 * this.vel_x;
+
 		// Si choca con el borde derecho de la pantalla...
 		if (this.x >= 302)
-			// Se desplazará hacia la izquierda.
-			this.dx = -2;
+			// El sentido de la velocidad horizontal se inverte.
+			this.vel_x *= -1;
 
 		// Si choca con el borde izquierdo de la pantalla...
 		if (this.x < 0)
-			// Se desplazará hacia la derecha.
-			this.dx = 2;
+			// El sentido de la velocidad horizontal se inverte.
+			this.vel_x *= -1;
+
+		// La pelota se desplaza horizontalmente.
+		this.x += this.vel_x;
 
 		// Cambia el frame que se muestra de la pelota.
 		if (this.cuadro == 0)
