@@ -93,37 +93,6 @@
 		mainLoop = window.requestAnimationFrame(buclePrincipal);
 	};
 
-	// Ajusta el tamaño del canvas a cualquier resolución de pantalla.
-	function ajustarGameScreen() {
-		// Proporción de ancho / alto deseada.
-		var widthToHeight = 320 / 240; // 320px*240px
-
-		// Ancho y alto actuales de la ventana.
-		var newWidth = window.innerWidth;
-		var newHeight = window.innerHeight;
-
-		// Proporción de ancho / alto actual.
-		var newWidthToHeight = newWidth / newHeight;
-
-		// Si hay mas ancho del deseado...
-		if (newWidthToHeight > widthToHeight) {
-			// Se ajusta al alto.
-			newWidth = newHeight * widthToHeight;
-			gameScreen.style.height = newHeight + 'px';
-			gameScreen.style.width = newWidth + 'px';
-		} else {
-		// Si hay mas alto del deseado...
-			// Se ajusta al ancho.
-			newHeight = newWidth / widthToHeight;
-			gameScreen.style.width = newWidth + 'px';
-			gameScreen.style.height = newHeight + 'px';
-		}
-
-		// Según las medidas actuales, se centra el canvas.
-		gameScreen.style.marginTop = (-newHeight / 2) + 'px';
-		gameScreen.style.marginLeft = (-newWidth / 2) + 'px';
-	}
-
 
 // EVENTOS.    --------//
 
@@ -149,7 +118,7 @@
 		bufferContext = bufferCanvas.getContext('2d');
 
 		// Ajuste del canvas a la resolución de pantalla.
-		ajustarGameScreen();
+		camara.ajustarGameScreen();
 
 		// Ejecuta el bucle principal.
 		buclePrincipal();
@@ -161,7 +130,7 @@
 		console.info("Evento window.resize");
 
 		// Ajuste del canvas a la resolución de pantalla.
-		ajustarGameScreen();
+		camara.ajustarGameScreen();
 	}, false);
 
 	// Evento de cambio de orientación de la ventana (Dispositivos móviles).
@@ -170,7 +139,7 @@
 		console.info("Evento window.orientationchange");
 
 		// Ajuste del canvas a la resolución de pantalla.
-		ajustarGameScreen();
+		camara.ajustarGameScreen();
 	}, false);
 
 	// Evento de menú contextual.
