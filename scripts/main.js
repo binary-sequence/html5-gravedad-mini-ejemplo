@@ -73,7 +73,7 @@
 // FUNCIONES.    --------//
 
 	// Actualiza los datos necesarios en cada 'fps'.
-	function actualizar() {
+	function buclePrincipal() {
 		// Dibuja la imagen de fondo en el buffer.
 		bufferContext.drawImage(fondo, 0, 0);
 
@@ -84,7 +84,7 @@
 		screen.drawImage(bufferCanvas, 0, 0);
 
 		// Creo un hilo de ejecución para el siguiente frame.
-		mainLoop = window.requestAnimationFrame(actualizar);
+		mainLoop = window.requestAnimationFrame(buclePrincipal);
 	};
 
 	// Ajusta el tamaño del canvas a cualquier resolución de pantalla.
@@ -146,7 +146,7 @@
 		ajustarGameScreen();
 
 		// Ejecuta el bucle principal.
-		actualizar();
+		buclePrincipal();
 	};
 
 	// Evento de cambio del tamaño de la ventana.
