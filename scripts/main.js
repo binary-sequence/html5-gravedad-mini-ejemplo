@@ -53,7 +53,7 @@
 	var bufferCanvas = document.createElement('canvas');
 
 	// Objeto que efectúa operaciones de dibujo 2d en el buffer.
-	bufferContext = null;
+	var bufferContext = null;
 
 	// Array de objetos Image para almacenar los frames de la pelota.
 	var imgPelota = new Array();
@@ -64,16 +64,16 @@
 	var fondo = new Image(); fondo.src = 'img/fondo.jpg';
 
 	// Objeto de clase pelota (ver /scripts/pelota.js).
-	pelota = new Pelota(imgPelota);
+	var pelota = new Pelota(imgPelota);
 
 	// Almacena el código representativo del caracter pulsado o null.
-	keycode = null;
+	var keycode = null;
 
 	// Almacena el caracter pulsado o null si no hay tecla pulsada.
-	keychar = null;
+	var keychar = null;
 
 	// Referencia al hilo de ejecución del bucle principal.
-	mainLoop = null;
+	var mainLoop = null;
 
 
 // FUNCIONES.    --------//
@@ -129,6 +129,9 @@
 
 	// Evento de página cargada.
 	window.onload = function() {
+		// Información en consola javascript del navegador.
+		console.info("Evento window.onload");
+
 		// Referencia al elemento gráfico canvas.
 		gameScreen = document.getElementById('gameScreen');
 
@@ -153,19 +156,37 @@
 	};
 
 	// Evento de cambio del tamaño de la ventana.
-	window.addEventListener('resize', ajustarGameScreen, false);
+	window.addEventListener('resize', function() {
+		// Información en consola javascript del navegador.
+		console.info("Evento window.resize");
+
+		// Ajuste del canvas a la resolución de pantalla.
+		ajustarGameScreen();
+	}, false);
 
 	// Evento de cambio de orientación de la ventana (Dispositivos móviles).
-	window.addEventListener('orientationchange', ajustarGameScreen, false);
+	window.addEventListener('orientationchange', function() {
+		// Información en consola javascript del navegador.
+		console.info("Evento window.orientationchange");
+
+		// Ajuste del canvas a la resolución de pantalla.
+		ajustarGameScreen();
+	}, false);
 
 	// Evento de menú contextual.
 	window.oncontextmenu = function() {
+		// Información en consola javascript del navegador.
+		console.info("Evento window.oncontextmenu");
+
 		// Desactivar menú contextual.
 		return false;
 	};
 
 	// Evento de tecla pulsada.
 	window.onkeydown = function (e) {
+		// Información en consola javascript del navegador.
+		console.info("Evento window.onkeydown (" + e.keyCode + ":" + String.fromCharCode(e.keycode) + ", " + e.which + ":" + String.fromCharCode(e.which) + ")");
+
 		// IE8 y anteriores.
 		if (window.event)
 			keycode = e.keyCode;
@@ -187,6 +208,9 @@
 
 	// Evento de tecla levantada.
 	window.onkeyup = function (e) {
+		// Información en consola javascript del navegador.
+		console.info("Evento window.onkeyup (" + e.keyCode + ":" + String.fromCharCode(e.keycode) + ", " + e.which + ":" + String.fromCharCode(e.which) + ")");
+
 		// null -> No hay tecla pulsada.
 		keycode = null;
 		keychar = null;
