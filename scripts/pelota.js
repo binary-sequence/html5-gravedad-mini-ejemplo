@@ -59,6 +59,12 @@ function Pelota() {
 
 	// Actualiza los datos de la pelota y la redibuja.
 	this.actualizar = function () { // Ejecutado en cada 'fps';
+		// Se asegura de que se pare...
+		if (this.y >= 176 && this.vel_y <= 0.4 && this.vel_y >= -0.4) {
+			// ...para evitar cálculos decimales infinitos.
+			this.vel_y = 0;
+		}
+
 		// Aceleración vertical (gravedad).
 		this.vel_y += 0.4;
 
