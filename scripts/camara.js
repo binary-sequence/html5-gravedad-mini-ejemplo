@@ -63,6 +63,26 @@ function Camara(imagenes, pelota) {
 	// Medidas de gráficos.
 	this.ancho = 320; this.alto = 240;
 
+	// Referencia al elemento gráfico canvas.
+	this.gameScreen = document.getElementById('gameScreen');
+
+	// Objeto que efectúa operaciones de dibujo 2d en canvas.
+	this.screen = this.gameScreen.getContext('2d');
+
+	// Buffer para técnica de double buffering.
+	this.buffer = document.createElement('canvas');
+
+	// Objeto que efectúa operaciones de dibujo 2d en el buffer.
+	this.bufferContext = this.buffer.getContext('2d');
+
+	// Resolución del elemento canvas.
+	this.gameScreen.width = this.ancho;
+	this.gameScreen.height = this.alto;
+
+	// Resolución del buffer.
+	this.buffer.width = this.gameScreen.width;
+	this.buffer.height = this.gameScreen.height;
+
 
 // MÉTODOS.    --------//
 
@@ -71,7 +91,7 @@ function Camara(imagenes, pelota) {
 	// FONDO.    --------//
 
 		// Dibuja la imagen de fondo en el buffer.
-		bufferContext.drawImage(this.img['fondo'], 0, 0);
+		this.bufferContext.drawImage(this.img['fondo'], 0, 0);
 
 
 	// PELOTA.    --------//
@@ -91,13 +111,17 @@ function Camara(imagenes, pelota) {
 		}
 
 		// Dibuja la pelota en la pantalla.
-		bufferContext.drawImage(this.img['pelota'][this.cuadroPelota], this.pelota.x, this.pelota.y);
+		this.bufferContext.drawImage(
+			this.img['pelota'][this.cuadroPelota],
+			this.pelota.x,
+			this.pelota.y
+		);
 
 
 	// VOLCADO DEL BUFFER AL CANVAS VISIBLE.    --------//
 
 		// Pasa el contenido del buffer al canvas.
-		screen.drawImage(bufferCanvas, 0, 0);
+		this.screen.drawImage(this.buffer, 0, 0);
 	};
 
 	// Ajusta el tamaño del canvas a cualquier resolución de pantalla.
@@ -116,19 +140,24 @@ function Camara(imagenes, pelota) {
 		if (newWidthToHeight > widthToHeight) {
 			// Se ajusta al alto.
 			newWidth = newHeight * widthToHeight;
-			gameScreen.style.height = newHeight + 'px';
-			gameScreen.style.width = newWidth + 'px';
+			this.gameScreen.style.height = newHeight + 'px';
+			this.gameScreen.style.width = newWidth + 'px';
 		} else {
 		// Si hay mas alto del deseado...
 			// Se ajusta al ancho.
 			newHeight = newWidth / widthToHeight;
-			gameScreen.style.width = newWidth + 'px';
-			gameScreen.style.height = newHeight + 'px';
+			this.gameScreen.style.width = newWidth + 'px';
+			this.gameScreen.style.height = newHeight + 'px';
 		}
 
 		// Según las medidas actuales, se centra el canvas.
-		gameScreen.style.marginTop = (-newHeight / 2) + 'px';
-		gameScreen.style.marginLeft = (-newWidth / 2) + 'px';
+		this.gameScreen.style.marginTop = (-newHeight / 2) + 'px';
+		this.gameScreen.style.marginLeft = (-newWidth / 2) + 'px';
 	};
+
+	// Información en consola javascript del navegador.
+	console.info("Creado objeto de clase Camara.");
 }
 
+// Información en consola javascript del navegador.
+console.info("Incluído camara.js");

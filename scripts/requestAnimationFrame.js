@@ -65,3 +65,5 @@
 		window.cancelAnimationFrame = function(id) { clearTimeout(id); };
 }());
 
+// Información en consola javascript del navegador.
+console.info("Incluído requestAnimationFrame.js");

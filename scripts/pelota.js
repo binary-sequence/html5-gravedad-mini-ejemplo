@@ -101,5 +101,10 @@ function Pelota() {
 		// La pelota se desplaza horizontalmente.
 		this.x += this.vel_x;
 	};
+
+	// Información en consola javascript del navegador.
+	console.info("Creado objeto de clase Pelota.");
 }
 
+// Información en consola javascript del navegador.
+console.info("Incluído pelota.js");
