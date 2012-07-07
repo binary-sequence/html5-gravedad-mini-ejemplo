@@ -46,7 +46,7 @@ function Camara(imagenes, pelota) {
 // PROPIEDADES.    --------//
 
 	// Activa o desactiva modo debug.
-	var debugMode = true;
+	this.debugMode = true;
 
 	// Referencia al almacen de imágenes.
 	this.img = imagenes;
@@ -116,6 +116,51 @@ function Camara(imagenes, pelota) {
 			this.pelota.x,
 			this.pelota.y
 		);
+
+		// Depuración de pelota.
+		if (this.debugMode == true) {
+			// Posición de la caja.
+			var x = this.pelota.x + 19;
+			var y = this.pelota.y + 19;
+
+			// Alto del texto en medida pt.
+			var height = 10;
+
+			// Datos a mostrar.
+			var x_pos = Math.round(this.pelota.x * 100) / 100;
+			var y_pos = Math.round(this.pelota.y * 100) / 100;
+			var vel_x = Math.round(this.pelota.vel_x * 100) / 100;
+			var vel_y = Math.round(this.pelota.vel_y * 100) / 100;
+
+			// Lineas de información.
+			var lines = Array();
+			lines[0] = "x=" + x_pos + ",y=" + y_pos;
+			lines[1] = "vel_x=" + vel_x + "";
+			lines[2] = "vel_y=" + vel_y + "";
+			lines[3] = "cuadro=" + this.cuadroPelota;
+
+			// Tamaño y fuente.
+			this.bufferContext.font = height + "pt Calibri";
+
+			// Obtiene el ancho de la primera línea.
+			var metrics = this.bufferContext.measureText("x=000.00,y=000.00");
+			var width = metrics.width;
+
+			// Dibuja la caja.
+			this.bufferContext.beginPath();
+			this.bufferContext.fillStyle = "#d0efff";
+			this.bufferContext.fillRect(
+				x - 2,
+				y - height - 2,
+				width + 4,
+				lines.length*height + 4
+			);
+
+			// Dibuja el texto.
+			this.bufferContext.fillStyle = "#555555";
+			for(var i = 0; i < lines.length; i++)
+				this.bufferContext.fillText(lines[i], x, y + i*height);
+		}
 
 
 	// BORDE PANTALLA.
