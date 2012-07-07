@@ -1,4 +1,4 @@
-<!--
+/*
                                 ESPAÑOL
 
   Este archivo es parte de 'Gravedad-mini-ejemplo'.
@@ -39,37 +39,31 @@
   You should have received a copy of the GNU General Public License along with
   'Gravedad-mini-ejemplo'. If not, see <http://www.gnu.org/licenses/>.
 
--->
+*/
 
-<!DOCTYPE html>
-<html lang="es">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no" />
+// CLASE cámara.
+function Camara(pelota) {
+// PROPIEDADES.    --------//
 
-		<link rel="stylesheet" href="styles/normalize.css">
-		<link rel="stylesheet" href="styles/normalizeForGames.css">
+	// Activa o desactiva modo debug.
+	var debugMode = true;
 
-		<script src="scripts/requestAnimationFrame.js"></script>
-		<script src="scripts/pelota.js"></script>
-		<script src="scripts/camara.js"></script>
-		<script src="scripts/main.js"></script>
-	</head>
+	// Referencia al objeto de clase pelota.
+	var pelota = pelota
 
-	<body>
-		<canvas id="gameScreen">
-			ESPAÑOL<br />
-			Este software, <b>Gravedad-mini-ejemplo</b>, funciona mediante el
-			elemento canvas de html5.<br />
-			Si estás viendo este mensaje, significa que tu navegador web no es
-			compatible con canvas.<br />
-			Utiliza un navegador compatible.<br />
-			<br />
-			ENGLISH<br />
-			This software, <b>Gravedad-mini-ejemplo</b>, works under canvas
-			element of html5.<br />
-			If you see this notice, your browser does not support canvas.<br />
-			Use a compatible web browser.
-		</canvas>
-	</body>
-</html>
+
+// MÉTODOS.    --------//
+
+	// Actualiza el gráfico canvas.
+	this.actualizar = function() {
+		// Dibuja la imagen de fondo en el buffer.
+		bufferContext.drawImage(fondo, 0, 0);
+
+		// Dibuja la pelota en la pantalla.
+		bufferContext.drawImage(pelota.imagenes[pelota.cuadro], pelota.x, pelota.y);
+
+		// Pasa el contenido del buffer al canvas.
+		screen.drawImage(bufferCanvas, 0, 0);
+	};
+}
+

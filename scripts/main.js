@@ -66,6 +66,9 @@
 	// Objeto de clase pelota (ver /scripts/pelota.js).
 	var pelota = new Pelota(imgPelota);
 
+	// Objeto de clase camara (ver /scripts/camara.js).
+	var camara = new Camara(pelota);
+
 	// Referencia al hilo de ejecución del bucle principal.
 	var mainLoop = null;
 
@@ -74,16 +77,13 @@
 
 	// Actualiza los datos necesarios en cada 'fps'.
 	function buclePrincipal() {
-		// Dibuja la imagen de fondo en el buffer.
-		bufferContext.drawImage(fondo, 0, 0);
-
 		// Ejecuta el método actualizar del objeto de clase pelota.
-		pelota.actualizar(bufferContext);
+		pelota.actualizar();
 
-		// Pasa el contenido del buffer al canvas.
-		screen.drawImage(bufferCanvas, 0, 0);
+		// Actualiza los gráficos del canvas.
+		camara.actualizar();
 
-		// Creo un hilo de ejecución para el siguiente frame.
+		// Crea un hilo de ejecución para el siguiente frame.
 		mainLoop = window.requestAnimationFrame(buclePrincipal);
 	};
 

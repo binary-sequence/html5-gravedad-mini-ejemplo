@@ -67,7 +67,7 @@ function Pelota(imagenes) {
 // MÉTODOS.    --------//
 
 	// Actualiza los datos de la pelota y la redibuja.
-	this.actualizar = function (screen) { // Ejecutado en cada 'fps';
+	this.actualizar = function () { // Ejecutado en cada 'fps';
 		// Aceleración vertical (gravedad).
 		this.vel_y += 0.4;
 
@@ -123,9 +123,6 @@ function Pelota(imagenes) {
 			else
 				this.cuadro = 0;
 		}
-
-		// Dibuja la pelota en la pantalla.
-		screen.drawImage(this.imagenes[this.cuadro], this.x, this.y);
 	};
 }
 
