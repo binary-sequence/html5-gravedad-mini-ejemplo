@@ -55,10 +55,13 @@ function Camara(imagenes, pelota) {
 	this.pelota = pelota
 
 	// Frame de la pelota que se muetra.
-	this.cuadro = 0;
+	this.cuadroPelota = 0;
 
 	// Número de frame en cada segundo.
 	this.frame = 0;
+
+	// Medidas de gráficos.
+	this.ancho = 320; this.alto = 240;
 
 
 // MÉTODOS.    --------//
@@ -82,15 +85,16 @@ function Camara(imagenes, pelota) {
 		if (this.pelota.vel_x != 0) {
 			// Cambia el frame a mostrar según el contador.
 			if (this.frame == 0)
-				this.cuadro = 1;
+				this.cuadroPelota = 1;
 			else
-				this.cuadro = 0;
+				this.cuadroPelota = 0;
 		}
 
-	// VOLCADO DEL BUFFER AL CANVAS VISIBLE.    --------//
-
 		// Dibuja la pelota en la pantalla.
-		bufferContext.drawImage(this.img['pelota'][this.cuadro], this.pelota.x, this.pelota.y);
+		bufferContext.drawImage(this.img['pelota'][this.cuadroPelota], this.pelota.x, this.pelota.y);
+
+
+	// VOLCADO DEL BUFFER AL CANVAS VISIBLE.    --------//
 
 		// Pasa el contenido del buffer al canvas.
 		screen.drawImage(bufferCanvas, 0, 0);
@@ -99,7 +103,7 @@ function Camara(imagenes, pelota) {
 	// Ajusta el tamaño del canvas a cualquier resolución de pantalla.
 	this.ajustarGameScreen = function() {
 		// Proporción de ancho / alto deseada.
-		var widthToHeight = 320 / 240; // 320px*240px
+		var widthToHeight = this.ancho / this.alto; // 320px*240px
 
 		// Ancho y alto actuales de la ventana.
 		var newWidth = window.innerWidth;
