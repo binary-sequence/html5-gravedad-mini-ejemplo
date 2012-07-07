@@ -185,7 +185,7 @@
 	// Evento de tecla pulsada.
 	window.onkeydown = function (e) {
 		// Información en consola javascript del navegador.
-		console.info("Evento window.onkeydown (" + e.keyCode + ":" + String.fromCharCode(e.keycode) + ", " + e.which + ":" + String.fromCharCode(e.which) + ")");
+		console.info("Evento window.onkeydown (" + e.keyCode + ":" + String.fromCharCode(e.keyCode) + ", " + e.which + ":" + String.fromCharCode(e.which) + ")");
 
 		// IE8 y anteriores.
 		if (window.event)
@@ -209,7 +209,7 @@
 	// Evento de tecla levantada.
 	window.onkeyup = function (e) {
 		// Información en consola javascript del navegador.
-		console.info("Evento window.onkeyup (" + e.keyCode + ":" + String.fromCharCode(e.keycode) + ", " + e.which + ":" + String.fromCharCode(e.which) + ")");
+		console.info("Evento window.onkeyup (" + e.keyCode + ":" + String.fromCharCode(e.keyCode) + ", " + e.which + ":" + String.fromCharCode(e.which) + ")");
 
 		// null -> No hay tecla pulsada.
 		keycode = null;
