@@ -49,13 +49,16 @@ function Pelota(imagenes) {
 	this.x = 150; this.y = 50;
 
 	// Velocidad de desplazamiento horizontal.
-	this.vel_x = 2;
+	this.vel_x = 4;
 
 	// Velocidad de desplazamiento vertical.
 	this.vel_y = 0;
 
 	// Frame de la pelota que se muetra.
 	this.cuadro = 0;
+
+	// Número de frame en cada segundo.
+	this.frame = 0;
 
 	// Contiene un array de objetos Image.
 	this.imagenes = imagenes;
@@ -84,9 +87,15 @@ function Pelota(imagenes) {
 			this.y += this.vel_y;
 
 		// Si se mueve horizontalmente...
-		if (this.vel_x > 0)
+		if (this.vel_x > 0 || (this.vel_x * -1 > 0))
 			// Aceleración horizontal (rozamiento).
 			this.vel_x -= 0.01 * this.vel_x;
+
+		// Se asegura de que se pare...
+		if (this.vel_x < 0.1 && this.vel_x > -0.1) {
+			// ...para evitar cálculos decimales infinitos.
+			this.vel_x = 0;
+		}
 
 		// Si choca con el borde derecho de la pantalla...
 		if (this.x >= 302)
@@ -101,11 +110,19 @@ function Pelota(imagenes) {
 		// La pelota se desplaza horizontalmente.
 		this.x += this.vel_x;
 
-		// Cambia el frame que se muestra de la pelota.
-		if (this.cuadro == 0)
-			this.cuadro = 1;
-		else
-			this.cuadro = 0;
+		// Cuento el frame en el segundo actual (60 fps).
+		this.frame++;
+		if (this.frame > 1)
+			this.frame = 0;
+
+		// Si se está moviendo horizontalmente...
+		if (this.vel_x != 0) {
+			// Cambia el frame a mostrar según el contador.
+			if (this.frame == 0)
+				this.cuadro = 1;
+			else
+				this.cuadro = 0;
+		}
 
 		// Dibuja la pelota en la pantalla.
 		screen.drawImage(this.imagenes[this.cuadro], this.x, this.y);
