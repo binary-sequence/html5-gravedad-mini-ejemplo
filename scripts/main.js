@@ -147,9 +147,28 @@
 			keychar = String.fromCharCode(keycode);
 
 			// Si pulsa alguna tecla...
-			if (keychar != null)
-				// Se para el bucle principal.
-				window.cancelAnimationFrame(mainLoop);
+			switch (keychar) {
+			// Si pulsa la tecla 'q'.
+				case 'q': case 'Q':
+					// Información en consola javascript del navegador.
+					console.info("Bucle principal finalizado por el usuario.");
+
+					// Se para el bucle principal.
+					window.cancelAnimationFrame(mainLoop);
+				break;
+			// Si no es un caracter imprimible.
+				default:
+					// Si pulsa la tecla control (izquierda o derecha).
+					if (keycode == 17) {
+						// Activa / desactiva el modo depuración.
+						camara.debugMode = !(camara.debugMode);
+
+						// Información en consola javascript del navegador.
+						console.info("Debug mode: " + camara.debugMode + ".");
+					}
+					// Si no ha pulsado ninguna tecla.
+					//if (keycode == null)
+			}
 
 			// El evento continúa normalmente.
 			return true;

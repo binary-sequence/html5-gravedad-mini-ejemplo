@@ -163,6 +163,44 @@ function Camara(imagenes, pelota) {
 		}
 
 
+	// MENÚ DE OPCIONES.
+
+		// Ancho de la caja.
+		var width = this.ancho - 2;
+
+		// Alto del texto en medida pt.
+		var height = 7;
+
+		// Lineas de información.
+		var lines = Array();
+		lines[0] = "Acciones:    (Pulsa una de estas teclas)";
+		lines[1] = "";
+		lines[2] = "Ctrl. Activa/desactiva modo debug.";
+		lines[3] = "Q.    Parar la animación.";
+
+		// Posición de la caja.
+		var x = 1.5;
+		var y = this.alto - lines.length*height - 4.5;
+
+		// Tamaño y fuente.
+		this.bufferContext.font = height + "pt Sans-Serif";
+
+		// Dibuja la caja.
+		this.bufferContext.beginPath();
+		this.bufferContext.fillStyle = "#001111";
+		this.bufferContext.fillRect(
+			x,
+			y,
+			width,
+			lines.length * height + 4
+		);
+
+		// Dibuja el texto.
+		this.bufferContext.fillStyle = "#f5f5f5";
+		this.bufferContext.textBaseline = 'Top';
+		for(var i = 0; i < lines.length; i++)
+			this.bufferContext.fillText(lines[i], x + 10.5, y + (i + 1)*height);
+
 	// BORDE PANTALLA.
 		this.bufferContext.beginPath();
         this.bufferContext.rect(0.5, 0.5, this.ancho - 1.5, this.alto - 1.5);
