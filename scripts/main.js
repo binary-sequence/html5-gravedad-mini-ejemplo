@@ -66,6 +66,18 @@
 	// Referencia al objeto de clase camara.
 	var camara = null;
 
+	// Estadísticas.
+	var stats_fps = new Stats(), stats_ms = new Stats();
+	stats_fps.setMode(0); stats_ms.setMode(1); // 0: fps, 1: ms
+	// Align top-left
+	stats_fps.domElement.style.position = 'absolute';
+	stats_fps.domElement.style.left = '0px';
+	stats_fps.domElement.style.top = '0px';
+	// Align top-left
+	stats_ms.domElement.style.position = 'absolute';
+	stats_ms.domElement.style.left = '100px';
+	stats_ms.domElement.style.top = '0px';
+
 	// Referencia al hilo de ejecución del bucle principal.
 	var mainLoop = null;
 
@@ -74,6 +86,9 @@
 
 	// Actualiza los datos necesarios en cada 'fps'.
 	function buclePrincipal() {
+		stats_fps.begin();
+		stats_ms.begin();
+
 		// Ejecuta el método actualizar del objeto de clase pelota.
 		pelota.actualizar();
 
@@ -82,6 +97,9 @@
 
 		// Crea un hilo de ejecución para el siguiente frame.
 		mainLoop = window.requestAnimationFrame(buclePrincipal);
+
+		stats_fps.end();
+		stats_ms.end();
 	};
 
 
@@ -91,6 +109,10 @@
 	window.onload = function() {
 		// Información en consola javascript del navegador.
 		console.info("Evento window.onload");
+
+		// Estadísticas.
+		document.body.appendChild( stats_fps.domElement );
+		document.body.appendChild( stats_ms.domElement );
 
 		// Objeto de clase camara (ver /scripts/camara.js).
 		camara = new Camara(img, pelota);
