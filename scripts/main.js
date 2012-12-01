@@ -95,8 +95,10 @@
 		// Actualiza los gráficos del canvas.
 		camara.actualizar();
 
-		// Crea un hilo de ejecución para el siguiente frame.
-		mainLoop = window.requestAnimationFrame(buclePrincipal);
+		setTimeout(function() {
+			// Crea un hilo de ejecución para el siguiente frame.
+			mainLoop = window.requestAnimationFrame(buclePrincipal);
+		}, 10);
 
 		stats_fps.end();
 		stats_ms.end();
