@@ -11,4 +11,4 @@ Funciona en cualquier sistema operativo con navegador web compatible con JavaScr
 
 [Pruébalo aquí](http://binary-sequence.github.com/html5-gravedad-mini-ejemplo/)
 
-<img src="https://lh4.googleusercontent.com/-5kfHZQL1mDk/UKSvJFrP6kI/AAAAAAAACIY/1nluj77IOiw/s800/html5-gravedad-mini-ejemplo.jpg" style=border:0;">
+<img src="https://raw.github.com/binary-sequence/html5-gravedad-mini-ejemplo/master/screenshot-gravedad-mini-ejemplo.jpg" style=border:0;">
